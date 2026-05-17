@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-frontend-service
-  namespace: nginx-frontend
+  namespace: frontend
 spec:
   type: NodePort
   selector:

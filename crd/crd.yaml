@@ -9,15 +9,13 @@ spec:
   source:
     repoURL: https://github.com/rajkumar25maurya/nginx-dep.git
     targetRevision: main
-    path: .
+    path: frontend # Path to the directory containing the Kubernetes manifests (Deployment and Service)
 
   destination:
     server: https://192.168.1.140:6443 
-    namespace: nginx-frontend
+    namespace: frontend
 
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
