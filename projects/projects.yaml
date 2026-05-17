@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: frontend-team
+  namespace: argocd
+
+spec:
+  description: Frontend project
+
+  sourceRepos:
+    - https://github.com/rajkumar25maurya/nginx-dep.git
+
+  destinations:
+    - server: https://192.168.1.140:6443
+      namespace: frontend
+
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  roles:
+    - name: frontend-admin
+      description: Admin role for frontend project
+
+      policies:
+        - p, proj:frontend-team:frontend-admin, applications, *, frontend-team/*, allow
+
+      groups:
+        - frontend-admins
